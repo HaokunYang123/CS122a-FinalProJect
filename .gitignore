@@ -1,0 +1,6 @@
+build/
+oss-cad-suite/
+*.bit
+*.svf
+*.json
+*.cfg
