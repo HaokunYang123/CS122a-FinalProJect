@@ -17,7 +17,7 @@
 #define PIN_SCK 18
 #define PIN_MOSI 19 // TX
 
-#define LAPTOP_IP   "10.187.2.173"
+#define LAPTOP_IP   "192.168.1.13"
  
 #define TCP_PORT    4242                 /* must match the Python script */
 #define IMAGE_BYTES (76800 * 2)          /* 153600 bytes (uint16 per pixel) */
