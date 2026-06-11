@@ -11,21 +11,25 @@ module OV7670_config_rom(
     case(addr) 
     0:  dout <= 16'h12_80; //reset
     1:  dout <= 16'hFF_F0; //delay
-    2:  dout <= 16'h12_04; // COM7,     set RGB color output
+    2:  dout <= 16'h12_14; // COM7,  14 is normal and 16 is color bar(edited from h12_04)   set RGB color output 
     3:  dout <= 16'h11_80; // CLKRC     internal PLL matches input clock
-    4:  dout <= 16'h0C_00; // COM3,     default settings
-    5:  dout <= 16'h3E_00; // COM14,    no scaling, normal pclock
+    4:  dout <= 16'h0C_00; // COM3,  (edited from h0C_00)   default settings
+    5:  dout <= 16'h3E_00; // COM14, (edited from h3E_00)   no scaling, normal pclock
     6:  dout <= 16'h04_00; // COM1,     disable CCIR656
     7:  dout <= 16'h40_d0; //COM15,     RGB565, full output range
-    8:  dout <= 16'h3a_04; //TSLB       set correct output data sequence (magic)
+    //8:  dout <= 16'h3a_04; //TSLB       set correct output data sequence (magic)
+    8:  dout <= 16'h3a_0C; //TSLB  (was 0x04 — 0x0C unlocked color on your hardware)
     9:  dout <= 16'h14_18; //COM9       MAX AGC value x4
-    10: dout <= 16'h4F_B3; //MTX1       all of these are magical matrix coefficients
-    11: dout <= 16'h50_B3; //MTX2
-    12: dout <= 16'h51_00; //MTX3
-    13: dout <= 16'h52_3d; //MTX4
-    14: dout <= 16'h53_A7; //MTX5
-    15: dout <= 16'h54_E4; //MTX6
-    16: dout <= 16'h58_9E; //MTXS
+    10: dout <= 16'h4F_B3;   // MTX1  (was B3)
+    11: dout <= 16'h50_B3;   // MTX2  (was B3)
+    12: dout <= 16'h51_00;   // MTX3  (unchanged)
+    13: dout <= 16'h52_3D;   // MTX4  (was 3D)
+    14: dout <= 16'h53_A7;   // MTX5  (was A7)
+    15: dout <= 16'h54_E4;   // MTX6  (was E4)
+    //16: dout <= 16'h58_1E; //MTXS
+
+    16: dout <= 16'h58_9E;   // MTXS: clear sign bits, keep auto-center
+
     17: dout <= 16'h3D_C0; //COM13      sets gamma enable, does not preserve reserved bits, may be wrong?
     18: dout <= 16'h17_14; //HSTART     start high 8 bits
     19: dout <= 16'h18_02; //HSTOP      stop high 8 bits //these kill the odd colored line
@@ -34,7 +38,7 @@ module OV7670_config_rom(
     22: dout <= 16'h1A_7B; //VSTOP      stop high 8 bits
     23: dout <= 16'h03_0A; //VREF       vsync edge offset
     24: dout <= 16'h0F_41; //COM6       reset timings
-    25: dout <= 16'h1E_00; //MVFP       disable mirror / flip //might have magic value of 03
+    25: dout <= 16'h1E_10; //MVFP     from 00 to 10  disable mirror / flip //might have magic value of 03
     26: dout <= 16'h33_0B; //CHLF       //magic value from the internet
     27: dout <= 16'h3C_78; //COM12      no HREF when VSYNC low
     28: dout <= 16'h69_00; //GFIX       fix gain control
@@ -47,7 +51,7 @@ module OV7670_config_rom(
     34: dout <= 16'h70_3a;
     35: dout <= 16'h71_35;
     36: dout <= 16'h72_11;
-    37: dout <= 16'h73_f0;
+    37: dout <= 16'h73_f0; // (edited from h73_f0)
     38: dout <= 16'ha2_02;
     //gamma curve values
     39: dout <= 16'h7a_20;
@@ -85,10 +89,15 @@ module OV7670_config_rom(
     70: dout <= 16'ha8_f0; //HAECC5
     71: dout <= 16'ha9_90; //HAECC6
     72: dout <= 16'haa_94; //HAECC7
-    73: dout <= 16'h13_e5; //COM8, enable AGC / AEC
-    default: dout <= 16'hFF_FF;         //mark end of ROM
+    //73: dout <= 16'h13_e5; //COM8, enable AGC / AEC
+    // 74: dout <= 16'h01_80;   // BLUE
+    // 75: dout <= 16'h02_80;   // RED
+    73: dout <= 16'h13_e7;   
+    74: dout <= 16'h01_80;   // back to neutral (AWB overwrites these anyway)
+    75: dout <= 16'h02_80;
+    //76: dout <= 16'h15_20;   // COM10: bit5 = PCLK reverse
+    default: dout <= 16'hFF_FF;
     endcase
-    
     end
 endmodule
 

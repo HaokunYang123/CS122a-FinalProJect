@@ -55,6 +55,7 @@ target_include_directories(CustomProject-PICO PRIVATE
 
 # Add any user requested libraries
 target_link_libraries(CustomProject-PICO 
+        pico_stdlib   
         hardware_spi
         hardware_i2c
         hardware_dma
