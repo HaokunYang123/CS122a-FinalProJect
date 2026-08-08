@@ -1,0 +1,11 @@
+#ifndef WIFI_CONFIG_H
+#define WIFI_CONFIG_H
+
+// Copy this file to wifi_config.h and replace the example values locally.
+// wifi_config.h is intentionally excluded from Git.
+#define WIFI_SSID "your-network-name"
+#define WIFI_PASSWORD "your-network-password"
+#define LAPTOP_IP "192.168.1.100"
+
+#endif
+

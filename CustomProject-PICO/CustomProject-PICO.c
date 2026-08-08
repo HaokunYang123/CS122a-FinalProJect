@@ -7,6 +7,7 @@
 #include "pico/cyw43_arch.h"
 #include "lwip/pbuf.h"
 #include "lwip/tcp.h"
+#include "wifi_config.h"
 
 // SPI Defines
 // We are going to use SPI 0, and allocate it to the following GPIO pins
@@ -17,8 +18,6 @@
 #define PIN_SCK 18
 #define PIN_MOSI 19 // TX
 
-#define LAPTOP_IP   "192.168.1.13"
- 
 #define TCP_PORT    4242                 /* must match the Python script */
 #define IMAGE_BYTES (76800 * 2)          /* 153600 bytes (uint16 per pixel) */
  
@@ -271,7 +270,7 @@ int main()
       do {
           printf("Connecting to Wi-Fi...\n");
           rc = cyw43_arch_wifi_connect_timeout_ms(
-                  "EXAMPLE_WIFI_SSID", "EXAMPLE_WIFI_PASSWORD",
+                  WIFI_SSID, WIFI_PASSWORD,
                   CYW43_AUTH_WPA2_AES_PSK, 30000);
           printf("wifi connect rc=%d\n", rc);
           if (rc != 0) sleep_ms(1000);   // brief pause, then try again

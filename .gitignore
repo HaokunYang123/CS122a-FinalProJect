@@ -1,0 +1,25 @@
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Local credentials and machine-specific configuration
+CustomProject-PICO/wifi_config.h
+
+# Generated build output
+CustomProject-PICO/build/
+CustomProject-FPGA/build/
+laptopRecevier/frame.bin
+
+# Common generated files
+*.bit
+*.cfg
+*.dis
+*.elf
+*.hex
+*.json
+*.map
+*.o
+*.svf
+*.uf2
+*.vcd
+
