@@ -2,8 +2,6 @@
 
 Course project integrating an OV7670 camera, an iCESugar Pro ECP5 FPGA, SDRAM, a TFT display, a Raspberry Pi Pico 2 W, and a laptop receiver. The system captures 320 x 240 RGB565 frames, applies selectable pixel transformations, displays the result, and can stream a 153,600-byte frame over Wi-Fi to a Python receiver.
 
-![Captured frame](laptopRecevier/frame.png)
-
 ## System flow
 
 ```text
@@ -71,4 +69,3 @@ This repository contains a mixture of course/reference RTL and project-specific 
 - Wi-Fi and receiver configuration is compile-time and local to each device.
 - The transfer sends one complete RGB565 frame rather than continuous video.
 - The repository does not yet claim RTOS, CAN, LVGL, TinyML, or autonomous-driving functionality.
-
