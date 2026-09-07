@@ -1,5 +1,4 @@
 `include "OV7670MasterCommand.sv"
-
 module camera
 (
     input logic [7:0] D_data,
@@ -23,7 +22,7 @@ module camera
     output logic [15:0] w_data,
     output logic w_en,
     output logic [23:0] w_address,
-    output logic done1,
+    output logic done1
     //output logic resetFirst
 
 );

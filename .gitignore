@@ -5,6 +5,9 @@
 # Local credentials and machine-specific configuration
 CustomProject-PICO/wifi_config.h
 
+# Bundled local FPGA toolchain
+/oss-cad-suite/
+
 # Generated build output
 CustomProject-PICO/build/
 CustomProject-FPGA/build/
@@ -22,4 +25,3 @@ laptopRecevier/frame.bin
 *.svf
 *.uf2
 *.vcd
-
